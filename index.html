@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEST HELPER</title>
+    <link rel="icon" href="favico.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="search-container">
+            <div class="keyword-inputs" id="keyword-inputs-container">
+                <input type="text" class="keyword-input" placeholder="Фрагмент 1" autocomplete="off">
+            </div>
+            <div class="input-controls">
+                <button id="add-input-button">+</button>
+                <button id="remove-input-button">-</button>
+            </div>
+            <button id="search-button">Найти</button>
+        </div>
+        
+        <div class="page-management top-page-management hidden">
+            <button id="prev-page" class="page-management-button">&#9664; Назад</button>
+            <span id="page-info" class="page-info"></span>
+            <button id="next-page" class="page-management-button">Вперед &#9654;</button>
+        </div>
+        
+        <div class="result-container" id="results">
+            <div class="placeholder">
+                <p>Результаты поиска будут отображены здесь</p>
+            </div>
+        </div>
+
+        <div class="page-management bottom-page-management hidden">
+            <button id="bottom-prev-page" class="page-management-button">&#9664; Назад</button>
+            <span id="bottom-page-info" class="page-info"></span>
+            <button id="bottom-next-page" class="page-management-button">Вперед &#9654;</button>
+        </div>
+        
+        <div class="floating-pagination hidden">
+            <button id="floating-prev" class="floating-pagination-button">&#9664;</button>
+            <span id="floating-page-info"></span>
+            <button id="floating-next" class="floating-pagination-button">&#9654;</button>
+        </div>
+        
+        <div id="copy-notification" class="copy-notification">Ответ скопирован!</div>
+        
+        <footer>
+            <p>Вопросов в базе: <span id="questions-count"></span></p>
+            <button id="database-button" class="database-button">База вопросов</button>
+        </footer>
+    </div>
+
+    <script src="database.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

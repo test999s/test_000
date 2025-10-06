@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>БАЗА ВОПРОСОВ</title>
+    <link rel="icon" href="favico.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>База вопросов</h1>
+        
+        <div class="page-management top-page-management">
+            <button id="prev-page" class="page-management-button">&#9664; Назад</button>
+            <span id="page-info" class="page-info"></span>
+            <button id="next-page" class="page-management-button">Вперед &#9654;</button>
+        </div>
+        
+        <div class="filter-container">
+            <select id="filter-select" class="filter-select">
+                <option value="all">Все вопросы</option>
+                <option value="identical">Одинаковые вопросы</option>
+            </select>
+        </div>
+        
+        <div class="floating-pagination">
+            <button id="floating-prev" class="floating-pagination-button">&#9664;</button>
+            <span id="floating-page-info"></span>
+            <button id="floating-next" class="floating-pagination-button">&#9654;</button>
+        </div>
+        
+        <div class="result-container" id="results"></div>
+
+        <div class="page-management bottom-page-management">
+            <button id="bottom-prev-page" class="page-management-button">&#9664; Назад</button>
+            <span id="bottom-page-info" class="page-info"></span>
+            <button id="bottom-next-page" class="page-management-button">Вперед &#9654;</button>
+        </div>
+        
+        <div id="copy-notification" class="copy-notification">Ответ скопирован!</div>
+        
+        <footer>
+            <button id="back-button" class="back-button">Вернуться к поиску</button>
+        </footer>
+    </div>
+
+    <script src="database.js"></script>
+    <script src="base.js"></script>
+</body>
+</html>
