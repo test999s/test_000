@@ -11,28 +11,33 @@
     <div class="container">
         <h1>База вопросов</h1>
         
-        <div class="page-management top-page-management">
+        <div class="loading-indicator" id="loading-indicator">
+            <div class="loading-spinner"></div>
+            <p>Загрузка базы вопросов...</p>
+        </div>
+        
+        <div class="page-management top-page-management hidden">
             <button id="prev-page" class="page-management-button">&#9664; Назад</button>
             <span id="page-info" class="page-info"></span>
             <button id="next-page" class="page-management-button">Вперед &#9654;</button>
         </div>
         
-        <div class="filter-container">
+        <div class="filter-container hidden">
             <select id="filter-select" class="filter-select">
                 <option value="all">Все вопросы</option>
                 <option value="identical">Одинаковые вопросы</option>
             </select>
         </div>
         
-        <div class="floating-pagination">
+        <div class="floating-pagination hidden">
             <button id="floating-prev" class="floating-pagination-button">&#9664;</button>
             <span id="floating-page-info"></span>
             <button id="floating-next" class="floating-pagination-button">&#9654;</button>
         </div>
         
-        <div class="result-container" id="results"></div>
+        <div class="result-container hidden" id="results"></div>
 
-        <div class="page-management bottom-page-management">
+        <div class="page-management bottom-page-management hidden">
             <button id="bottom-prev-page" class="page-management-button">&#9664; Назад</button>
             <span id="bottom-page-info" class="page-info"></span>
             <button id="bottom-next-page" class="page-management-button">Вперед &#9654;</button>
@@ -40,12 +45,11 @@
         
         <div id="copy-notification" class="copy-notification">Ответ скопирован!</div>
         
-        <footer>
+        <footer class="hidden">
             <button id="back-button" class="back-button">Вернуться к поиску</button>
         </footer>
     </div>
 
-    <script src="database.js"></script>
     <script src="base.js"></script>
 </body>
 </html>

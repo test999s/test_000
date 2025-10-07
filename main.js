@@ -1,5 +1,5 @@
-let NotifPositionX = 'right';     /* left,center,right */
-let NotifPositionY = 'top';   /* bottom,middle,top */
+let NotifPositionX = 'right';
+let NotifPositionY = 'top';
 let NotifColorText = '#FFFFFF';
 let NotifColorBg = '#00BE3B';
 
@@ -10,6 +10,58 @@ let maxQuestionsPerPage = 15;
 let currentPage = 1;
 let searchResults = [];
 let searchKeywords = [];
+let questionDatabase = [];
+
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzV6ic4CfcVfPd6msCgxE_d8vTqkUNNkkiNOB3iAfiL8ZwyyPQep_3W37s1oRR0my4aRA/exec';
+
+async function loadQuestionsFromGoogleSheets() {
+    try {
+        showLoadingIndicator();
+        const url = GOOGLE_SCRIPT_URL + '?t=' + new Date().getTime();
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('Ошибка загрузки данных');
+        }
+        
+        const text = await response.text();
+        const questions = JSON.parse(text);
+        
+        hideLoadingIndicator();
+        return questions;
+    } catch (error) {
+        console.error('Ошибка загрузки:', error);
+        hideLoadingIndicator();
+        showError('Ошибка загрузки базы вопросов. Проверьте подключение к интернету.');
+        return [];
+    }
+}
+
+function showLoadingIndicator() {
+    const indicator = document.getElementById('loading-indicator');
+    if (indicator) {
+        indicator.classList.remove('hidden');
+    }
+}
+
+function hideLoadingIndicator() {
+    const indicator = document.getElementById('loading-indicator');
+    if (indicator) {
+        indicator.classList.add('hidden');
+    }
+}
+
+function showError(message) {
+    const resultsContainer = document.getElementById('results');
+    resultsContainer.innerHTML = `
+        <div class="no-results">
+            <h3>Ошибка</h3>
+            <p>${message}</p>
+            <button id="retry-button" class="database-button" style="margin-top: 15px;">Повторить попытку</button>
+        </div>
+    `;
+    
+    document.getElementById('retry-button').addEventListener('click', initializeApp);
+}
 
 function initNotification() {
     const notification = document.getElementById('copy-notification');
@@ -373,10 +425,20 @@ function navigateToPage(direction) {
     });
 }
 
+async function initializeApp() {
+    questionDatabase = await loadQuestionsFromGoogleSheets();
+    
+    if (questionDatabase.length > 0) {
+        document.getElementById('questions-count').textContent = questionDatabase.length;
+        document.querySelector('.search-container').classList.remove('hidden');
+        document.querySelector('footer').classList.remove('hidden');
+        document.querySelector('.placeholder').classList.remove('hidden');
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     initNotification();
-    
-    document.getElementById('questions-count').textContent = questionDatabase.length;
+    initializeApp();
     
     const searchButton = document.getElementById('search-button');
     searchButton.addEventListener('click', handleSearch);
