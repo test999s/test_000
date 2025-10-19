@@ -144,7 +144,7 @@ function displayResults(results, keywords, page = 1) {
     if (results.length === 0) {
         const noResults = document.createElement('div');
         noResults.className = 'no-results';
-        noResults.innerHTML = '<h3>Ничего не найдено</h3><p>Скорее всего этого вопроса нет в базе, либо ошибка в фрагмента</p>';
+        noResults.innerHTML = '<h3>Ничего не найдено</h3><p>Скорее всего этого вопроса нет в базе, либо ошибка в фрагментах</p>';
         resultsContainer.appendChild(noResults);
         hidePagination();
         return;
@@ -501,4 +501,5 @@ document.addEventListener('DOMContentLoaded', function() {
     
     window.addEventListener('scroll', toggleFloatingPagination);
     toggleFloatingPagination();
+
 });
